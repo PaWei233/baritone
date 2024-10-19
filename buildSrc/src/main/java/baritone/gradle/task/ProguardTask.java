@@ -95,6 +95,7 @@ public class ProguardTask extends BaritoneGradleTask {
     }
 
     private void downloadProguard() throws Exception {
+        System.setProperty("java.net.useSystemProxies", "true");
         Path proguardZip = getTemporaryFile(String.format(PROGUARD_ZIP, proguardVersion));
         if (!Files.exists(proguardZip)) {
             write(new URL(String.format("https://github.com/Guardsquare/proguard/releases/download/v%s/proguard-%s.zip", proguardVersion, proguardVersion)).openStream(), proguardZip);
